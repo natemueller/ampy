@@ -189,6 +189,8 @@ class Pyboard:
             self.serial.read(n)
             n = self.serial.inWaiting()
 
+        time.sleep(2)
+        
         self.serial.write(b'\r\x01') # ctrl-A: enter raw REPL
         data = self.read_until(1, b'raw REPL; CTRL-B to exit\r\n>')
         if not data.endswith(b'raw REPL; CTRL-B to exit\r\n>'):
